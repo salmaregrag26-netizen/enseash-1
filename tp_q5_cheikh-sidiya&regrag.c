@@ -8,10 +8,6 @@
 
 #define BUFSIZE 1000    // Maximum command size
 
-/*
- * This function builds and displays the prompt
- * with the exit code or signal and the execution time
- */
 void writeRet(char *str, int code, int time_ms) {
     char buf[BUFSIZE];
 
@@ -66,7 +62,7 @@ void Commande(char *cmd, ssize_t n) {
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     // Compute execution time in milliseconds
-// We compute the elapsed time by subtracting the start and end timestamps and converting seconds and nanoseconds into milliseconds 
+    // We compute the elapsed time by subtracting the start and end timestamps and converting seconds and nanoseconds into milliseconds 
     time_exe_ms = (end.tv_sec - start.tv_sec) * 1000
                 + (end.tv_nsec - start.tv_nsec) / 1000000;
 
@@ -102,7 +98,6 @@ int main() {
         // Execute the command and measure its execution time
         Commande(cmd, n);
 
-        // Display prompt
         write(STDOUT_FILENO, "% ", strlen("% "));
     }
 }
